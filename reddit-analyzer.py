@@ -132,6 +132,20 @@ def timeGraph(timelist):
     
     # deal with HOUR counting
     tgCounter = Counter(newtl)
+
+    if len(hournames) != len(tgCounter):
+        houri = 0
+        for g in hournames:
+            contains = False
+            for d in tgCounter:
+                if d == houri:
+                    contains = True
+
+            if contains == False:
+                tgCounter[houri] = 0
+
+            houri+=1
+
     tgdata = tgCounter.most_common()
     # sort by HOUR not popularity
     tgdata = sorted(tgdata)
@@ -161,6 +175,20 @@ def timeGraph(timelist):
         wdlist.append(datetime.fromtimestamp(int(x)).weekday())
         
     wdCounter = Counter(wdlist)
+
+    if len(weekdays) != len(wdCounter):
+        wordi = 0
+        for g in weekdays:
+            contains = False
+            for d in wdCounter:
+                if d == wordi:
+                    contains = True
+
+            if contains == False:
+                wdCounter[wordi] = 0
+
+            wordi+=1
+
     wddata = wdCounter.most_common()
     wddata = sorted(wddata)
 
